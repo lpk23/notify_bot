@@ -1,5 +1,6 @@
 {
   "api_key": "",
-  "timer": "",
-  "file": ""
+  "timer": 60,
+  "file": "message.txt",
+  "chat_id": []
 }
