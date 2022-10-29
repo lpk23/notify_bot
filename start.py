@@ -10,6 +10,16 @@ def load_settings():
         data = json.loads(f)
     return data
 
+settings = load_settings()  # Получение данных из конфига
+logging.basicConfig(level=logging.INFO)  # Логирования
+bot = Bot(token=settings['api_key'])  # Объект бота
+dp = Dispatcher(bot)  # Диспетчер
+
+#Получения id чата
+@dp.message_handler(commands=['id'])
+async def send_welcome(message: types.Message):
+    await message.reply(message.chat.id)
+
 
 # Запуск процесса поллинга новых апдейтов
 async def main():
@@ -18,8 +28,4 @@ async def main():
 
 # Тута запуск :)
 if __name__ == '__main__':
-    settings = load_settings()  # Получение данных из конфига
-    logging.basicConfig(level=logging.INFO)  # Логирования
-    bot = Bot(token=settings['api_key'])  # Объект бота
-    dp = Dispatcher(bot)  # Диспетчер
     asyncio.run(main())  # Старт
